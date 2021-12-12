@@ -1,0 +1,4 @@
+* Add a Copyleft Comment Block
+* Change lodash to a dev dependency
+* Add TODO.txt to .npmignore
+* ??Add src/ to .npmignore

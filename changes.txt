@@ -1,0 +1,20 @@
+
+Added:
+	Array.head
+	Array.tail
+	Object.Get
+	Object.Includes
+	Object.IsEqual
+	Object.Merge
+	Object.Paths
+	Object.Pick
+	Object.Set
+	Object.Trim
+	String.IsJson
+
+Modified:
+	Object.Extend: Default deep
+
+Removed:
+	Object.EventEmitter
+
