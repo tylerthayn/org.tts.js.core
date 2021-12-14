@@ -88,4 +88,12 @@ require('./Array/From')
 //Define(global, 'QueryString', require('querystring'))
 //Define(global, 'Path', require('path'))
 
+require('./Object/Object.Extensions')
+require('./Object/Object.Plugins')
 
+require('./EventEmitter/EventEmitter')
+require('./Extensions/EventEmitter')
+require('./Extensions/Logger')
+require('./Extensions/Settings')
+
+require('./Plugins/MultiLogger')
