@@ -13,7 +13,6 @@ if (typeof global !== 'object') {
 	}
 }
 
-let lodash = null
 !(function () {
 	/**
  * @license
@@ -154,7 +153,7 @@ return ke(r,n,t)})}),Bt.prototype.reject=function(n){return this.filter(Lf(bi(n)
 u&&(q.prototype[t]=function(){var t=this.__wrapped__,o=e?[1]:arguments,f=t instanceof Bt,c=o[0],l=f||yh(t),s=function(n){var t=u.apply(q,a([n],o));return e&&h?t[0]:t};l&&r&&"function"==typeof c&&1!=c.length&&(f=l=!1);var h=this.__chain__,p=!!this.__actions__.length,_=i&&!h,v=f&&!p;if(!i&&l){t=v?t:new Bt(this);var g=n.apply(t,o);return g.__actions__.push({func:Qo,args:[s],thisArg:Y}),new H(g,h)}return _&&v?n.apply(this,o):(g=this.thru(s),_?e?g.value()[0]:g.value():g)})}),r(["pop","push","shift","sort","splice","unshift"],function(n){
 var t=hl[n],r=/^(?:push|sort|unshift)$/.test(n)?"tap":"thru",e=/^(?:pop|shift)$/.test(n);q.prototype[n]=function(){var n=arguments;if(e&&!this.__chain__){var u=this.value();return t.apply(yh(u)?u:[],n)}return this[r](function(r){return t.apply(yh(r)?r:[],n)})}}),ee(Bt.prototype,function(n,t){var r=q[t];if(r){var e=r.name+"";yl.call(is,e)||(is[e]=[]),is[e].push({name:t,func:r})}}),is[Ju(Y,hn).name]=[{name:"wrapper",func:Y}],Bt.prototype.clone=Gt,Bt.prototype.reverse=Ht,Bt.prototype.value=Jt,q.prototype.at=Js,
 q.prototype.chain=Xo,q.prototype.commit=nf,q.prototype.next=tf,q.prototype.plant=ef,q.prototype.reverse=uf,q.prototype.toJSON=q.prototype.valueOf=q.prototype.value=of,q.prototype.first=q.prototype.head,Ll&&(q.prototype[Ll]=rf),q},ge=ve();"function"==typeof define&&"object"==typeof define.amd&&define.amd?(Xr._=ge,define(function(){return ge})):te?((te.exports=ge)._=ge,ne._=ge):Xr._=ge}).call(this);
-	lodash = typeof module === 'object' ? module.exports : this._
+	Define(global, 'lodash', _.noConflict())
 }())
 
 
@@ -1106,7 +1105,11 @@ Define(global, 'logj', function (v) {
 	log(s)
 })
 
-Define(global, 'EventEmitter', function (o) {
+Object.Extensions = {}
+
+Object.Plugins = {}
+
+Define(Object.Extensions, 'EventEmitter', function (o) {
 	var R = typeof Reflect === 'object' ? Reflect : null
 	var ReflectApply=R&&'function'==typeof R.apply?R.apply:function ReflectApply(target,receiver,args){return Function.prototype.apply.call(target,receiver,args)};
 	var ReflectOwnKeys
@@ -1154,6 +1157,22 @@ Define(global, 'EventEmitter', function (o) {
 	function arrayClone(arr,n){var copy=new Array(n);for(var i=0;i<n;++i)copy[i]=arr[i];return copy}
 	function spliceOne(list,index){for(;index+1<list.length;index++)list[index]=list[index+1];list.pop()}
 	function unwrapListeners(arr){var ret=new Array(arr.length);for(var i=0;i<ret.length;++i)ret[i]=arr[i].listener||arr[i];return ret}
+	return o
+})
+
+Define(Object.Extensions, 'Logger', function (o) {
+	Define(o, 'error', function () {
+		log.apply(null, arguments)
+	})
+	Define(o, 'log', function () {
+		log.apply(null, arguments)
+	})
+	Define(o, 'info', function () {
+		log.apply(null, arguments)
+	})
+	Define(o, 'trace', function () {
+		log.apply(null, arguments)
+	})
 	return o
 })
 

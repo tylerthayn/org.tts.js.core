@@ -1,2 +1,3 @@
+require('./Define')
 
 Object.Extensions = {}

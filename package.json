@@ -1,5 +1,5 @@
 {
-    "name": "@js/core",
+    "name": "org-tts-js-core",
     "title": "TTS Design javascript core libraries",
     "version": "1.0.1",
     "description": "TTS Design's javascript core libraries for GScript, NodeJS & Browser implementations",
@@ -15,7 +15,7 @@
         "Core"
     ],
     "license": "MIT",
-    "main": "src/",
+    "main": "dist/org.tts.js.core.js",
     "scripts": {
         "build": "grunt make",
         "docs": "jsdoc -c jsdoc.conf",
