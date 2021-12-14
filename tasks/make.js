@@ -18,14 +18,15 @@ module.exports = function(grunt) {
 		})
 
 		code = code.replace(/const lodash\s*=.*(\r\n)+/g, '')
+		code = `(function (factory) {\r\n\tif (typeof define === 'function' && define.amd) {\r\n\t\tdefine(['org.tts.js.core'], factory)\r\n\t} else if (typeof module === 'object' && module.exports) {\r\n\t\tmodule.exports = factory(require('org.tts.js.lodash'))\r\n\t} else {\r\n\t\tfactory(_)\r\n\t}\r\n}(function (_) {\r\n\r\n\t` + code.replace(/\r\n/g, '\r\n\t') + `\r\n\r\n}))`
 
 		grunt.log.write('Generating dist folders...')
 		try {Fs.mkdirSync(Path.resolve(options.dir, pkg.version), {recursive: true})} catch (e) {}
 		grunt.log.ok()
 
 		grunt.log.write('Creating release file...')
-		Fs.writeFileSync(Path.resolve(options.dir, pkg.version, options.file), '(function () {\r\n\r\n'+code+'\r\n\r\n}())\r\n', 'utf-8')
-		Fs.writeFileSync(Path.resolve(options.dir, options.file), '(function () {\r\n\r\n'+code+'\r\n\r\n}())\r\n', 'utf-8')
+		Fs.writeFileSync(Path.resolve(options.dir, pkg.version, options.file), code, 'utf-8')
+		Fs.writeFileSync(Path.resolve(options.dir, options.file), code, 'utf-8')
 		grunt.log.ok()
 
 		grunt.log.write('Creating minified file...')
@@ -37,13 +38,14 @@ module.exports = function(grunt) {
 
 	function Lodash () {
 		let lodash = Fs.readFileSync(require.resolve('lodash').replace(/\.js$/, '.min.js'), 'utf8')
-		return `!(function () {\r\n\t` + lodash + `\r\n\tDefine(global, 'lodash', _.noConflict())\r\n}())\r\n\r\n`
+		lodash = lodash.replace('define(', 'define(\'lodash\', ')
+		return `!(function () {\r\n\t` + lodash + `\r\n\tglobal.lodash = _.noConflict()\r\n}())\r\n`
 	}
 
 	function GetSource (source) {
 		source = Path.resolve(__dirname, source.endsWith('.js') ? source : source + '.js')
 		let src = Fs.readFileSync(source, 'utf-8')
-		return src.replace(requireMatch, '').trim().replace(/(\r\n)+\t*(\r\n)+/g, '\r\n')
+		return src.replace(requireMatch, '').trim().replace(/(\r\n)+\t*(\r\n)+/g, '\r\n').trim()
 	}
 
 	function GetSources (options) {

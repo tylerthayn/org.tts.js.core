@@ -1,4 +1,4 @@
-@js/core
+org-tts-js-core
 ======
 [![npm version]][npm]
 [![license badge]][license]
@@ -9,21 +9,21 @@ TTS Design's javascript core libraries for GScript, NodeJS & Browser implementat
 
 #### 1. NodeJs
 
-```npm install @js/core```
+```npm install org-tts-js-core```
 
 ```
-require('@js/core')
+require('org-tts-js-core')
 ```
 
 #### 2. Browser
 
 ##### CDN
 
-```<script src="https://cdn.ttscloud.site/@js/core.js"></script>```
+```<script src="https://cdn.ttscloud.site/org-tts-js-core.js"></script>```
 
 ##### Local source
 
-```<script src="@js/core.js"></script>```
+```<script src="org-tts-js-core.js"></script>```
 
 ```
 
@@ -102,5 +102,5 @@ require('@js/core')
 [bugs]: 
 [license]: /blob/master/LICENSE-MI
 [license badge]: https://img.shields.io/badge/license-mit-blue.svg
-[npm]: https://npm.ttscloud.site/#/detail/@js/core
+[npm]: https://npm.ttscloud.site/#/detail/org-tts-js-core
 [npm version]: https://img.shields.io/badge/version-v1.0.1-blue.svg
