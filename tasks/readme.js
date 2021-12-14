@@ -2,7 +2,7 @@
 require('@js/core')
 const Doctrine = require('doctrine'), ExtractComments = require('esprima-extract-comments'), Fs = require('fs'), Path = require('path')
 //Template = require('@js/Template')
-const Template = require('../build/Template.js')
+const Template = require('./templates/README.js')
 
 module.exports = function(grunt) {
 
