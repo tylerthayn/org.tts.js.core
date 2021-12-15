@@ -12,13 +12,13 @@ module.exports = function(grunt) {
 		let sources = GetSources(options)
 		sources.forEach((source) => {
 			grunt.log.write('Parsing source: '+source)
-			let src = source == 'lodash' ? Lodash() : GetSource(source)
+			let src = source == 'lodash' ? 'global.lodash = _.noConflict()\r\n' : GetSource(source)
 			code += src + '\r\n\r\n'
 			grunt.log.ok()
 		})
 
 		code = code.replace(/const lodash\s*=.*(\r\n)+/g, '')
-		code = `(function (factory) {\r\n\tif (typeof define === 'function' && define.amd) {\r\n\t\tdefine(['org.tts.js.core'], factory)\r\n\t} else if (typeof module === 'object' && module.exports) {\r\n\t\tmodule.exports = factory(require('org.tts.js.lodash'))\r\n\t} else {\r\n\t\tfactory(_)\r\n\t}\r\n}(function (_) {\r\n\r\n\t` + code.replace(/\r\n/g, '\r\n\t') + `\r\n\r\n}))`
+		code = `(function (factory) {\r\n\tif (typeof define === 'function' && define.amd) {\r\n\t\tdefine('org.tts.js.core', ['lodash'], factory)\r\n\t} else if (typeof module === 'object' && module.exports) {\r\n\t\tmodule.exports = factory(require('lodash'))\r\n\t} else {\r\n\t\tfactory(_)\r\n\t}\r\n}(function (_) {\r\n\r\n\t` + code.replace(/\r\n/g, '\r\n\t') + `\r\n\r\n}))`
 
 		grunt.log.write('Generating dist folders...')
 		try {Fs.mkdirSync(Path.resolve(options.dir, pkg.version), {recursive: true})} catch (e) {}

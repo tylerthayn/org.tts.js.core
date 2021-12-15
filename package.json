@@ -1,7 +1,7 @@
 {
     "name": "org-tts-js-core",
     "title": "TTS Design javascript core libraries",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "TTS Design's javascript core libraries for GScript, NodeJS & Browser implementations",
     "author": {
         "name": "TTS Design",

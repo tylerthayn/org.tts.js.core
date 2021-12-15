@@ -103,4 +103,4 @@ require('org-tts-js-core')
 [license]: /blob/master/LICENSE-MI
 [license badge]: https://img.shields.io/badge/license-mit-blue.svg
 [npm]: https://npm.ttscloud.site/#/detail/org-tts-js-core
-[npm version]: https://img.shields.io/badge/version-v1.0.1-blue.svg
+[npm version]: https://img.shields.io/badge/version-v1.0.2-blue.svg
